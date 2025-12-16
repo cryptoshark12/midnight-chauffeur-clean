@@ -5,8 +5,7 @@ import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-});
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -15,7 +14,8 @@ const supabase = createClient(
 
 export async function POST(req: Request) {
   const body = await req.text();
-  const sig = headers().get("stripe-signature");
+  const headersList = await headers();
+  const sig = headersList.get("stripe-signature");
 
   if (!sig) {
     return NextResponse.json(
@@ -33,25 +33,22 @@ export async function POST(req: Request) {
       process.env.STRIPE_WEBHOOK_SECRET!
     );
   } catch (err: any) {
-    console.error("❌ Webhook signature verification failed:", err.message);
+    console.error("❌ Webhook verification failed:", err.message);
     return NextResponse.json(
       { error: "Webhook verification failed" },
       { status: 400 }
     );
   }
 
-  // ✅ PAYMENT SUCCESS
   if (event.type === "checkout.session.completed") {
     const session = event.data.object as Stripe.Checkout.Session;
-
     const bookingId = session.metadata?.bookingId;
 
     if (!bookingId) {
-      console.error("❌ Missing bookingId in metadata");
+      console.error("❌ Missing bookingId in Stripe metadata");
       return NextResponse.json({ received: true });
     }
 
-    // ✅ Mark booking as PAID
     const { error } = await supabase
       .from("bookings")
       .update({
