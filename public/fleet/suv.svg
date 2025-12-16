@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 260">
+  <rect x="8" y="8" width="784" height="244" rx="28" fill="#0B0F14" stroke="#D4AF37" stroke-opacity="0.35" stroke-width="6"/>
+  <path d="M160 170c20-50 60-80 120-86h220c60 4 100 36 120 86l18 40H142l18-40z" fill="#10161E" stroke="#D4AF37" stroke-opacity="0.35" stroke-width="4"/>
+  <circle cx="250" cy="210" r="28" fill="#0A0E13" stroke="#D4AF37" stroke-opacity="0.55" stroke-width="6"/>
+  <circle cx="550" cy="210" r="28" fill="#0A0E13" stroke="#D4AF37" stroke-opacity="0.55" stroke-width="6"/>
+  <text x="400" y="60" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="34" fill="#D4AF37" font-weight="700">Black SUV</text>
+</svg>
