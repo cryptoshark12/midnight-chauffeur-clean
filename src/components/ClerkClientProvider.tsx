@@ -1,18 +1,11 @@
-import "./globals.css";
-import ClerkClientProvider from "@/components/ClerkClientProvider";
+"use client";
 
-export default function RootLayout({
+import { ClerkProvider } from "@clerk/nextjs";
+
+export default function ClerkClientProvider({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <html lang="en">
-      <body className="bg-[#05070A] text-white">
-        <ClerkClientProvider>
-          {children}
-        </ClerkClientProvider>
-      </body>
-    </html>
-  );
+  return <ClerkProvider>{children}</ClerkProvider>;
 }
