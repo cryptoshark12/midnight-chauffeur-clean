@@ -1,10 +1,7 @@
+"use client";
+
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
-
-export const metadata = {
-  title: "Midnight Chauffeur",
-  description: "Luxury transportation services",
-};
 
 export default function RootLayout({
   children,
